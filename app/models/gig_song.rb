@@ -1,0 +1,2 @@
+class GigSong < ApplicationRecord
+end

@@ -1,0 +1,2 @@
+class SingerPart < ApplicationRecord
+end

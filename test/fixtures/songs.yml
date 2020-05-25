@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  notes: MyString
+  active: false
+  holiday: false
+
+two:
+  title: MyString
+  notes: MyString
+  active: false
+  holiday: false
