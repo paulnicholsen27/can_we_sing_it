@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_25_204517) do
+ActiveRecord::Schema.define(version: 2020_05_26_022704) do
 
   create_table "gig_singers", force: :cascade do |t|
     t.integer "gig_id"
@@ -37,10 +37,10 @@ ActiveRecord::Schema.define(version: 2020_05_25_204517) do
   create_table "parts", force: :cascade do |t|
     t.string "name"
     t.integer "song_id"
-    t.boolean "exclusive"
     t.boolean "solo"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "bonus", default: false, null: false
   end
 
   create_table "singer_parts", force: :cascade do |t|
