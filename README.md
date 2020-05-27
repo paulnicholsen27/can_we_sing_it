@@ -1,3 +1,12 @@
+Hex Codes
+
+Light Cyan: E0FBFC
+Caribbean Green: 06D6AO
+Blue (NCS): 118AB2
+Midnight green: 073B4C
+Ruby: D81E5B
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
