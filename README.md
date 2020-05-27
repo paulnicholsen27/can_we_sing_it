@@ -1,24 +1,18 @@
-# README
+# Objectives
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+- See all singers
+    - See a singer and their parts, attendance, 
+- See all songs
+    - See a song and its parts with singers
 
-Things you may want to cover:
+- See all gigs
+    - See a gig
+        - Set its attendance
+    - Add a gig
+    - Delete a gig
 
-* Ruby version
+- See all parts for a song
 
-* System dependencies
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# Todo
+Fix Rack Cors in Middleware
