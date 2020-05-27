@@ -1,19 +1,26 @@
-import React, { Component } from "react";
+import React from "react";
 import { Container, Menu } from 'semantic-ui-react'
-import { Route, NavLink, BrowserRouter } from "react-router-dom";
+import { Route, NavLink, BrowserRouter, Link } from "react-router-dom";
 import Singers from "./Singers"
 import Songs from "./Songs"
 import Gigs from "./Gigs"
 
-class Main extends Component {
-  render() {
+let Main = () => {
+  let colors = {
+    cyan: 'E0FBFC',
+    green: '06D6AO',
+    blue: '118AB2',
+    black: '073B4C',
+    ruby: 'D81E5B'
+  }
+
     return (
         <BrowserRouter>
-          <ul className="header">
-            <li><NavLink to="/songs">Songs</NavLink></li>
-            <li><NavLink to="/singers">Singers</NavLink></li>
-            <li><NavLink to="/gigs">Gigs</NavLink></li>
-          </ul>
+          <Menu className="header">
+            <Menu.Item name="Songs" as={Link} to="/songs" />
+            <Menu.Item name="Singers" as={Link} to="/singers" />
+            <Menu.Item name="Gigs" as={Link} to="/gigs" />
+          </Menu>
           <div className="content">
              <Route path="/songs" component={Songs}/>
              <Route path="/singers" component={Singers}/>
@@ -21,7 +28,6 @@ class Main extends Component {
           </div>
         </BrowserRouter>
     );
-  }
 }
  
 export default Main;
