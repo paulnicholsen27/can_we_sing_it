@@ -15,18 +15,18 @@ let Main = () => {
   }
 
     return (
-        <BrowserRouter>
-          <Menu className="header">
-            <Menu.Item name="Songs" as={Link} to="/songs" />
-            <Menu.Item name="Singers" as={Link} to="/singers" />
-            <Menu.Item name="Gigs" as={Link} to="/gigs" />
-          </Menu>
-          <div className="content">
-             <Route path="/songs" component={Songs}/>
-             <Route path="/singers" component={Singers}/>
-             <Route path="/gigs" component={Gigs}/>
-          </div>
-        </BrowserRouter>
+          <BrowserRouter>
+            <Menu className="header">
+              <Menu.Item name="Songs" as={Link} to="/songs" />
+              <Menu.Item name="Singers" as={Link} to="/singers" />
+              <Menu.Item name="Gigs" as={Link} to="/gigs" />
+            </Menu>
+            <Container className="content">
+               <Route path="/songs" component={Songs}/>
+               <Route path="/singers" component={Singers}/>
+               <Route path="/gigs" component={Gigs}/>
+            </Container>
+          </BrowserRouter>
     );
 }
  

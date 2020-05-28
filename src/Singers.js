@@ -1,26 +1,24 @@
-import React, { Component, useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import Singer from "./Singer.js"
+import { List } from 'semantic-ui-react'
 
 let Singers = () => {
+  let [singers, changeSingers] = useState([])
 
   useEffect(() => {
+    let mounted = true
     fetch("http://localhost:3001/singers")
-      .then(r => r.json())
-      .then(json => console.log(json))
-  })
+      .then(mounted ? r => r.json() : null)
+      .then(mounted ? singers => { changeSingers(singers) } : null)
+    return () => mounted = false
+  }, []);
+
+  const singerListItems = singers.map(singer => <Singer singer={singer} key={singer.id}/>)
 
     return (
-      <div>
-        <h2>Singers</h2>
-        <p>Mauris sem velit, vehicula eget sodales vitae,
-        rhoncus eget sapien:</p>
-        <ol>
-          <li>Nulla pulvinar diam</li>
-          <li>Facilisis bibendum</li>
-          <li>Vestibulum vulputate</li>
-          <li>Eget erat</li>
-          <li>Id porttitor</li>
-        </ol>
-      </div>
+      <List>
+        {singerListItems}
+      </List>
     );
 }
  
