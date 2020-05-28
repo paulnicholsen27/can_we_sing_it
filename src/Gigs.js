@@ -1,22 +1,25 @@
-import React, { Component } from "react";
+import React, { useEffect, useState } from "react";
+import Gig from "./Gig.js"
+import { List } from 'semantic-ui-react'
 
-class Gigs extends Component {
-  render() {
+let Gigs = () => {
+  let [gigs, changeGigs] = useState([])
+
+  useEffect(() => {
+    let mounted = true
+    fetch("http://localhost:3001/gigs")
+      .then(mounted ? r => r.json() : null)
+      .then(mounted ? gigs => { changeGigs(gigs) } : null)
+    return () => mounted = false
+  }, []);
+
+  const gigListItems = gigs.map(gig => <Gig gig={gig} key={gig.id}/>)
+
     return (
-      <div>
-        <h2>Gigs</h2>
-        <p>Mauris sem velit, vehicula eget sodales vitae,
-        rhoncus eget sapien:</p>
-        <ol>
-          <li>Nulla pulvinar diam</li>
-          <li>Facilisis bibendum</li>
-          <li>Vestibulum vulputate</li>
-          <li>Eget erat</li>
-          <li>Id porttitor</li>
-        </ol>
-      </div>
+      <List>
+        {gigListItems}
+      </List>
     );
-  }
 }
  
 export default Gigs;

@@ -1,22 +1,25 @@
-import React, { Component } from "react";
+import React, { useEffect, useState } from "react";
+import Song from "./Song.js"
+import { List } from 'semantic-ui-react'
 
-class Songs extends Component {
-  render() {
+let Songs = () => {
+  let [songs, changeSongs] = useState([])
+
+  useEffect(() => {
+    let mounted = true
+    fetch("http://localhost:3001/songs")
+      .then(mounted ? r => r.json() : null)
+      .then(mounted ? songs => { changeSongs(songs) } : null)
+    return () => mounted = false
+  }, []);
+
+  const songListItems = songs.map(song => <Song song={song} key={song.id}/>)
+
     return (
-      <div>
-        <h2>Songs</h2>
-        <p>Mauris sem velit, vehicula eget sodales vitae,
-        rhoncus eget sapien:</p>
-        <ol>
-          <li>Nulla pulvinar diam</li>
-          <li>Facilisis bibendum</li>
-          <li>Vestibulum vulputate</li>
-          <li>Eget erat</li>
-          <li>Id porttitor</li>
-        </ol>
-      </div>
+      <List>
+        {songListItems}
+      </List>
     );
-  }
 }
  
 export default Songs;
