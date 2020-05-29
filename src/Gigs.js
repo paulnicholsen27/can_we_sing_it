@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Gig from "./Gig.js"
-import { List } from 'semantic-ui-react'
+import GigDetail from "./GigDetail.js"
+import { List, Rail, Segment, Grid, Container} from 'semantic-ui-react'
 
 let Gigs = () => {
   let [gigs, changeGigs] = useState([])
+  let [selectedGig, changeSelectedGig] = useState(null)
 
   useEffect(() => {
     let mounted = true
@@ -13,13 +15,26 @@ let Gigs = () => {
     return () => mounted = false
   }, []);
 
-  const gigListItems = gigs.map(gig => <Gig gig={gig} key={gig.id}/>)
+  let chooseGig = (gig) => {
+    changeSelectedGig(gig)
+  }
 
-    return (
-      <List>
-        {gigListItems}
-      </List>
-    );
+  const gigListItems = gigs.map(gig => <Gig gig={gig} 
+                                            key={gig.id} 
+                                            onClick={chooseGig} />)
+
+  return (
+    <Grid centered columns={2}>
+      <Grid.Column>
+        <Rail dividing position="left">
+            <List>
+              {gigListItems}
+            </List>
+        </Rail>
+      <GigDetail gig={selectedGig} />
+      </Grid.Column>
+    </Grid>
+  );
 }
  
 export default Gigs;
