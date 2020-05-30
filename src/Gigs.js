@@ -24,14 +24,14 @@ let Gigs = () => {
                                             onClick={chooseGig} />)
 
   return (
-    <Grid centered columns={2}>
-      <Grid.Column>
-        <Rail dividing position="left">
+    <Grid columns={2} divided style={{height: '100vh'}}>
+        <Grid.Column width={4} >
             <List>
               {gigListItems}
             </List>
-        </Rail>
-      <GigDetail gig={selectedGig} />
+        </Grid.Column>
+      <Grid.Column width={12} >
+        <GigDetail gig={selectedGig} />
       </Grid.Column>
     </Grid>
   );
