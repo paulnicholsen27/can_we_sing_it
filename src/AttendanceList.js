@@ -1,16 +1,17 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import { Button, List, Container, Header } from 'semantic-ui-react'
 import AttendanceListItem from "./AttendanceListItem.js"
 
 let AttendanceList = (props) => {
-
-    let [attendeeIds, changeAttendeeIds] = 
-        useState(Object.fromEntries(
-            props.gig.attendance.map(e => [e.singer.id, e.attending])
-    ))
-    // let [attendance, changeAttendance] = useState(props.gig.attendance)
+    let [attendeeIds, changeAttendeeIds] = useState(Object.fromEntries(
+                props.gig.attendance.map(e => [e.singer.id, e.attending])))
 
 
+    useEffect(() => {
+        changeAttendeeIds(
+            Object.fromEntries(
+                props.gig.attendance.map(e => [e.singer.id, e.attending])))
+        }, [props.gig])
 
     let saveAttendance = () => {
 
