@@ -17,10 +17,6 @@ let Gigs = () => {
 
   let chooseGig = (gig) => {
     changeSelectedGig(gig)
-    // changeGigs({
-    //   ...gigs,
-    //   gig
-    // })
   }
 
   const gigListItems = gigs.map(gig => <Gig gig={gig} 
@@ -38,7 +34,7 @@ let Gigs = () => {
         <GigDetail 
           gig={selectedGig} 
           key={selectedGig ? selectedGig.attendance : null}
-          changeGig={changeSelectedGig}/>
+          changeGig={changeSelectedGig} />
       </Grid.Column>
     </Grid>
   );

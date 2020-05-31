@@ -1,9 +1,9 @@
 import React from "react";
 import { Container, Menu } from 'semantic-ui-react'
 import { Route, NavLink, BrowserRouter, Link } from "react-router-dom";
-import Singers from "./Singers"
-import Songs from "./Songs"
-import Gigs from "./Gigs"
+import Singers from "./singers/Singers"
+import Songs from "./songs/Songs"
+import Gigs from "./gigs/Gigs"
 
 let Main = () => {
   let colors = {

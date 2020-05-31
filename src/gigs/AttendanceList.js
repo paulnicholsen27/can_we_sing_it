@@ -14,11 +14,11 @@ let AttendanceList = (props) => {
 
     useEffect(() => {
         updateAttendance(props.gig.attendance)
-        }, [props.gig])
+    }, [props.gig])
 
     let saveAttendance = () => { 
         let singer_ids = Object.keys(attendeeIds)
-        singer_ids = singer_ids.filter((id) => attendeeIds[id])
+        singer_ids = singer_ids.filter((id) => attendeeIds[id]) // only people attending this gig
         let data = {singer_ids: singer_ids}
         fetch(`http://localhost:3001/gigs/${props.gig.id}/attendance`, {
             method: 'POST',
@@ -29,7 +29,6 @@ let AttendanceList = (props) => {
         }).then(r => r.json())
         .then(
             gig => {
-                // updateAttendance(gig.attendance)
                 props.changeGig(
                     currentGig => {
                         currentGig.attendance = gig.attendance
@@ -45,7 +44,6 @@ let AttendanceList = (props) => {
             }
         )
     }
-
 
     const attendanceLis = props.gig.attendance.map((record) => {
         return ( <AttendanceListItem
