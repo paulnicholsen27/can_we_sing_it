@@ -6,15 +6,32 @@ let AttendanceList = (props) => {
     let [attendeeIds, changeAttendeeIds] = useState(Object.fromEntries(
                 props.gig.attendance.map(e => [e.singer.id, e.attending])))
 
-
-    useEffect(() => {
+    let updateAttendance = records => {
         changeAttendeeIds(
             Object.fromEntries(
-                props.gig.attendance.map(e => [e.singer.id, e.attending])))
+                records.map(e => [e.singer.id, e.attending])))
+        }
+
+    useEffect(() => {
+        updateAttendance(props.gig.attendance)
         }, [props.gig])
 
-    let saveAttendance = () => {
-
+    let saveAttendance = () => { 
+        let singer_ids = Object.keys(attendeeIds)
+        singer_ids = singer_ids.filter((id) => attendeeIds[id])
+        let data = {singer_ids: singer_ids}
+        fetch(`http://localhost:3001/gigs/${props.gig.id}/attendance`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        }).then(r => r.json())
+        .then(
+            gig => {
+                updateAttendance(gig.attendance)
+            }
+        )
     }
 
     let toggleCheckBox = id => {
@@ -39,7 +56,7 @@ let AttendanceList = (props) => {
         <Container>   
             <Header as="h4">Attendance:</Header>
             <List>{attendanceLis}</List>
-            <Button onSubmit={saveAttendance}>Save Changes</Button>
+            <Button onClick={() => saveAttendance(attendeeIds)}>Save Changes</Button>
         </Container>
     )
 
