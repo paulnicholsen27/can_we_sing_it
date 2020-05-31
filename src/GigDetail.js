@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import { Input, Container, Icon, Header } from 'semantic-ui-react'
+import { Input, Container, Icon, Header, Grid } from 'semantic-ui-react'
+import AttendanceList from "./AttendanceList.js"
 
 let GigDetail = (props) => {
     // let [lockIcon, changeLockIcon] = useState("lock")
@@ -13,13 +14,20 @@ let GigDetail = (props) => {
     //     })
     // }
 
+    // let handleCheckBoxClick = (record) => {
+    //     debugger
+    //     record.attending = !record.attending
+    // }
+
     let getDate = () => {
         const options = { year: 'numeric', 
-                          month: 'long', day: 'numeric' };
+                          month: 'long',
+                          day: 'numeric' };
 
         let _ = new Date(props.gig.start_time)
         return _.toLocaleDateString(undefined, options)
     }
+    
     if (props.gig) {
         return (
             <Container>
@@ -30,6 +38,14 @@ let GigDetail = (props) => {
                 // <Input value={props.gig.name} disabled={nameFieldEnabled} />
                 // <Icon link name={lockIcon} onClick={toggleNameField} />
             */}
+                <Grid columns={2} divided style={{height: '100vh'}}>
+                    <Grid.Column >
+                        <AttendanceList gig={props.gig} />
+                    </Grid.Column>
+                  <Grid.Column>
+                     test
+                  </Grid.Column>
+                </Grid>
             </Container>
         )
     } else {
