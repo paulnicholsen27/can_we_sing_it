@@ -17,19 +17,6 @@ let AttendanceList = (props) => {
 
     }
 
-    // let toggleCheckBox = (record) => {
-    //     // let singerId = record.singer.id
-    //     // changeAttendeeIds({
-    //     //     ...attendeeIds,
-    //     //     [singerId]: !attendeeIds[singerId]
-    //     // })
-    //     debugger
-    //     // changeAttendance(prevState => ({
-    //     //     ...prevState,
-    //     //     attending: !prevState.attending
-    //     //  }));
-    // }
-
     let toggleCheckBox = id => {
         changeAttendeeIds(
             {...attendeeIds,

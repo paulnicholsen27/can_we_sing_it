@@ -3,16 +3,6 @@ import { Checkbox, List } from 'semantic-ui-react'
 
 let AttendanceListItem = (props) => {
 
-    // let [record, changeRecord] = useState(props.record)
-    // let clicked = (r) => {
-    //     r.attending = !r.attending
-    //     changeAttending(r.attending)
-    // }
-
-    // let [checked, setChecked] = useState(props.record.attending)
-    
-
-
     return (
 
         <List.Item >
