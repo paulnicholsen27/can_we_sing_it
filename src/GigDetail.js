@@ -21,7 +21,10 @@ let GigDetail = (props) => {
                 </Header>
                 <Grid columns={2} divided style={{height: '100vh'}}>
                     <Grid.Column >
-                        <AttendanceList gig={props.gig} />
+                        <AttendanceList 
+                            gig={props.gig}
+                            key={props.gig.id}
+                            changeGig={props.changeGig} />
                     </Grid.Column>
                   <Grid.Column>
                      test
