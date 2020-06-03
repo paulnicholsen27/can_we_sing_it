@@ -29,7 +29,7 @@ let AttendanceList = (props) => {
         }).then(r => r.json())
         .then(
             gig => {
-                props.changeGig(
+                props.changeGig     (
                     currentGig => {
                         currentGig.attendance = gig.attendance
                         return currentGig})
