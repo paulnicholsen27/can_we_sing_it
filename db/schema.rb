@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_26_022704) do
+ActiveRecord::Schema.define(version: 2020_06_03_014122) do
 
   create_table "gig_singers", force: :cascade do |t|
     t.integer "gig_id"
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 2020_05_26_022704) do
     t.datetime "start_time"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "is_holiday"
   end
 
   create_table "parts", force: :cascade do |t|
@@ -61,7 +62,7 @@ ActiveRecord::Schema.define(version: 2020_05_26_022704) do
     t.string "title"
     t.string "notes"
     t.boolean "active"
-    t.boolean "holiday"
+    t.boolean "is_holiday"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
