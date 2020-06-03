@@ -20,8 +20,8 @@ let AttendanceList = (props) => {
         let singer_ids = Object.keys(attendeeIds)
         singer_ids = singer_ids.filter((id) => attendeeIds[id]) // only people attending this gig
         let data = {singer_ids: singer_ids}
-        fetch(`http://localhost:3001/gigs/${props.gig.id}/attendance`, {
-            method: 'POST',
+        fetch(`http://localhost:3001/gigs/${props.gig.id}`, {
+            method: 'PATCH',
             headers: {
               'Content-Type': 'application/json',
             },
