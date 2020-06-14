@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Gig from "./Gig.js"
+import ListItem from "shared/ListItem.js"
 import GigDetail from "./GigDetail.js"
 import { List, Grid } from 'semantic-ui-react'
 
@@ -16,7 +16,9 @@ let Gigs = () => {
     return () => mounted = false
   }, []);
 
-  let chooseGig = (gig) => {
+  let chooseGig = (event) => {
+    let name = event.target.textContent
+    let gig = gigs.find( (gig) => gig.name === name)
     changeSelectedGig(gig)
   }
 
@@ -24,7 +26,7 @@ let Gigs = () => {
     console.log(selectedGig)
   }
 
-  const gigListItems = gigs.map(gig => <Gig gig={gig} 
+  const gigListItems = gigs.map(gig => <ListItem content={gig.name} 
                                             key={gig.id} 
                                             onClick={chooseGig} />)
 

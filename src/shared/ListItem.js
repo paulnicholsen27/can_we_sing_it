@@ -7,7 +7,9 @@ let ListItem = (props) => {
         <Transition 
           visible={props.visible} 
           animation='vertical flip' duration={500}>
-        <List.Item as="a">
+        <List.Item as="a"
+          onClick={props.onClick}>
+
           <Icon name={props.icon}/>
           <List.Content>
             {props.content}

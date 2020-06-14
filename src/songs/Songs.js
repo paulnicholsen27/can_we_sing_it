@@ -29,7 +29,8 @@ let Songs = () => {
 
     return (
       <Container>
-        <Checkbox label='Include Holiday Songs?' 
+        <Checkbox 
+            label='Include Holiday Songs?' 
             onClick={toggleHoliday}
             checked={showHoliday} />
         <List>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Input, Container, Icon, Header, Grid, Button, Modal } from 'semantic-ui-react'
-import AttendanceList from "./AttendanceList.js"
+import CheckBoxList from "../shared/CheckBoxList.js"
 import EditGigModal from "./EditGigModal.js"
 
 let GigDetail = (props) => {
@@ -27,7 +27,7 @@ let GigDetail = (props) => {
                 </Header>
                 <Grid columns={2} divided style={{height: '100vh'}}>
                     <Grid.Column >
-                        <AttendanceList 
+                        <CheckBoxList 
                             gig={props.gig}
                             key={props.gig.id}
                             changeGig={props.changeGig} />

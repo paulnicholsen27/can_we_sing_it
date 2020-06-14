@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from 'react'
 import { Button, List, Container, Header } from 'semantic-ui-react'
-import AttendanceListItem from "./AttendanceListItem.js"
+import CheckBoxListItem from "./CheckBoxListItem.js"
 
-let AttendanceList = (props) => {
+let CheckBoxList = (props) => {
     let [attendeeIds, changeAttendeeIds] = useState(Object.fromEntries(
                 props.gig.attendance.map(e => [e.singer.id, e.attending])))
 
@@ -18,7 +18,8 @@ let AttendanceList = (props) => {
 
     let saveAttendance = () => { 
         let singer_ids = Object.keys(attendeeIds)
-        singer_ids = singer_ids.filter((id) => attendeeIds[id]) // only people attending this gig
+        singer_ids = singer_ids.filter((id) => attendeeIds[id]) 
+        // only people attending this gig
         let data = {singer_ids: singer_ids}
         fetch(`http://localhost:3001/gigs/${props.gig.id}`, {
             method: 'PATCH',
@@ -29,7 +30,7 @@ let AttendanceList = (props) => {
         }).then(r => r.json())
         .then(
             gig => {
-                props.changeGig     (
+                props.changeGig(
                     currentGig => {
                         currentGig.attendance = gig.attendance
                         return currentGig})
@@ -46,10 +47,11 @@ let AttendanceList = (props) => {
     }
 
     const attendanceLis = props.gig.attendance.map((record) => {
-        return ( <AttendanceListItem
+        return ( <CheckBoxListItem
             onChange={toggleCheckBox}
             checked={attendeeIds[record.singer.id]} 
             key={record.singer.id}
+            label={record.singer.name}
             record={record}/> )
     })
 
@@ -65,4 +67,4 @@ let AttendanceList = (props) => {
 
 }
 
-export default AttendanceList
+export default CheckBoxList
