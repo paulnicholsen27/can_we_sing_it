@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import Gig from "./Gig.js"
 import GigDetail from "./GigDetail.js"
-import { List, Rail, Segment, Grid, Container} from 'semantic-ui-react'
+import { List, Grid } from 'semantic-ui-react'
 
 let Gigs = () => {
   let [gigs, changeGigs] = useState([])
   let [selectedGig, changeSelectedGig] = useState(null)
-
+  
+  
   useEffect(() => {
     let mounted = true
     fetch("http://localhost:3001/gigs")
@@ -17,6 +18,11 @@ let Gigs = () => {
 
   let chooseGig = (gig) => {
     changeSelectedGig(gig)
+  }
+
+  let editGig = () => {
+    debugger
+    console.log(selectedGig)
   }
 
   const gigListItems = gigs.map(gig => <Gig gig={gig} 
@@ -34,7 +40,8 @@ let Gigs = () => {
         <GigDetail 
           gig={selectedGig} 
           key={selectedGig ? selectedGig.attendance : null}
-          changeGig={changeSelectedGig} />
+          changeGig={changeSelectedGig}
+          editGig={editGig} />
       </Grid.Column>
     </Grid>
   );

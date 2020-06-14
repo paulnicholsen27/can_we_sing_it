@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
-import { Input, Container, Icon, Header, Grid } from 'semantic-ui-react'
+import { Input, Container, Icon, Header, Grid, Button, Modal } from 'semantic-ui-react'
 import AttendanceList from "./AttendanceList.js"
+import EditGigModal from "./EditGigModal.js"
 
 let GigDetail = (props) => {
 
@@ -12,12 +13,17 @@ let GigDetail = (props) => {
         let _ = new Date(props.gig.start_time)
         return _.toLocaleDateString(undefined, options)
     }
-    
+
     if (props.gig) {
         return (
             <Container>
                 <Header as='h3' dividing>
-                  {props.gig.name} - {getDate()}
+                  <div>{props.gig.name} - {getDate()}</div>
+                  <EditGigModal 
+                    gig={props.gig}
+                    editGig={props.editGig} />
+
+
                 </Header>
                 <Grid columns={2} divided style={{height: '100vh'}}>
                     <Grid.Column >
