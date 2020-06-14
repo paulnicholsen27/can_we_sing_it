@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
-import Song from "./Song.js"
+import ListItem from "../shared/ListItem.js"
 import { List, Checkbox, Container } from 'semantic-ui-react'
 
 let Songs = () => {
   let [songs, changeSongs] = useState([])
 
   //  default to true if it's Christmastime!!!
-  let [showHoliday, changeShowHoliday] = useState(new Date().getMonth() >= 9) 
+  let [showHoliday, changeShowHoliday] = useState(
+    new Date().getMonth() >= 9) 
 
   useEffect(() => {
     let mounted = true
@@ -16,7 +17,13 @@ let Songs = () => {
     return () => mounted = false
   }, []);
 
-  const getSongListItems = songs.map(song => <Song song={song} key={song.id} showHolidaySongs={showHoliday}/>)
+  const getSongListItems = songs.map(song => {
+    return <ListItem 
+              content={song.title} 
+              key={song.id}
+              visible={!song.holiday || showHoliday}
+              icon={song.holiday ? 'tree' : 'music' } />
+  })
 
   let toggleHoliday = () => {changeShowHoliday(current => !current)}
 

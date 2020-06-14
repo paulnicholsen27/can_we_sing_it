@@ -21,7 +21,6 @@ let Gigs = () => {
   }
 
   let editGig = () => {
-    debugger
     console.log(selectedGig)
   }
 

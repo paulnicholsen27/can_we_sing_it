@@ -1,20 +1,20 @@
 import React from 'react'
 import { List, Icon, Transition} from 'semantic-ui-react'
 
-let Song = (props) => {
+let ListItem = (props) => {
 
     return (
         <Transition 
-          visible={!props.song.holiday || props.showHolidaySongs} 
+          visible={props.visible} 
           animation='vertical flip' duration={500}>
         <List.Item as="a">
-          <Icon name={props.song.holiday ? 'tree' : 'music' }/>
+          <Icon name={props.icon}/>
           <List.Content>
-            {props.song.title}
+            {props.content}
           </List.Content>
         </List.Item>
         </Transition>
     )
 }
 
-export default Song
+export default ListItem
