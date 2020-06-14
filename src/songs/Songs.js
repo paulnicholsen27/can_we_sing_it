@@ -21,15 +21,17 @@ let Songs = () => {
     return <ListItem 
               content={song.title} 
               key={song.id}
-              visible={!song.holiday || showHoliday}
-              icon={song.holiday ? 'tree' : 'music' } />
+              visible={!song.is_holiday || showHoliday}
+              icon={song.is_holiday ? 'tree' : 'music' } />
   })
 
   let toggleHoliday = () => {changeShowHoliday(current => !current)}
 
     return (
       <Container>
-        <Checkbox label='Include Holiday Songs?' onClick={toggleHoliday} checked={showHoliday} />
+        <Checkbox label='Include Holiday Songs?' 
+            onClick={toggleHoliday}
+            checked={showHoliday} />
         <List>
           {getSongListItems}
         </List>
