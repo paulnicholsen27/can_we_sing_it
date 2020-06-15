@@ -9,7 +9,7 @@ let CheckBoxListItem = (props) => {
             <Checkbox 
                 label={props.label} 
                 checked={props.checked}
-                onChange={() => props.onChange(props.record.singer.id)} />
+                onChange={props.onChange} />
         </List.Item>   
 
     )

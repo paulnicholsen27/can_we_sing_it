@@ -27,10 +27,12 @@ let GigDetail = (props) => {
                 </Header>
                 <Grid columns={2} divided style={{height: '100vh'}}>
                     <Grid.Column >
-                        <CheckBoxList 
-                            gig={props.gig}
+                        <CheckBoxList
+                            title={"Attendance: "}
+                            onSave={props.saveAttendance}
+                            items={props.gig.attendance}
                             key={props.gig.id}
-                            changeGig={props.changeGig} />
+                            onChange={props.toggleAttendance} />
                     </Grid.Column>
                   <Grid.Column>
                      test
