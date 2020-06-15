@@ -27,6 +27,7 @@ class GigsController < ApplicationController
   # PATCH/PUT /gigs/1
   def update
     if @gig.update(gig_params)
+
       render json: @gig
     else
       render json: @gig.errors, status: :unprocessable_entity
