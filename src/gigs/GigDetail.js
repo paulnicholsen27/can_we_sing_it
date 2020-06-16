@@ -16,13 +16,22 @@ let GigDetail = (props) => {
     }
 
     if (props.gig) {
-        const listItems = props.gig.attendance.map((record) => {
+        const singerListItems = props.gig.attendance.map((record) => {
           return ( <CheckBoxListItem
               onChange={props.toggleAttendance}
               checked={record.attending} 
               key={record.singer.id}
               label={record.singer.name}/> )
       })
+
+        const songListItems = props.gig.songs.map((song) => {
+          return ( <CheckBoxListItem
+              onChange={props.toggleAttendance}
+              checked={true} 
+              key={song.id}
+              label={song.title}/> )
+      })
+
         return (
             <Container>
                 <Header as='h3' dividing>
@@ -36,11 +45,13 @@ let GigDetail = (props) => {
                         <CheckBoxList
                             title={"Attendance: "}
                             onSave={props.saveAttendance}
-                            listItems={listItems}
-                            key={props.gig.id} />
+                            listItems={singerListItems}/>
                     </Grid.Column>
                     <Grid.Column>
-                        test
+                        <CheckBoxList
+                            title={"Set List"}
+                            onSave={props.saveAttendance}
+                            listItems={songListItems}/>
                     </Grid.Column>
                 </Grid>
             </Container>
