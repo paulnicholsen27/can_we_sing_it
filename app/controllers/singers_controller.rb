@@ -3,7 +3,7 @@ class SingersController < ApplicationController
 
   # GET /singers
   def index
-    @singers = Singer.all
+    @singers = Singer.includes(:parts, :gigs).all
 
     render json: @singers
   end

@@ -3,7 +3,7 @@ class GigsController < ApplicationController
 
   # GET /gigs
   def index
-    @gigs = Gig.all
+    @gigs = Gig.includes(:singers, :songs).all
 
     render json: @gigs
   end
