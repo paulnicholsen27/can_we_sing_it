@@ -16,7 +16,7 @@ let GigDetail = (props) => {
     }
 
     if (props.gig) {
-        const singerListItems = props.gig.attendance.map((record) => {
+        const singerListItems = props.gig.singers.map((record) => {
           return ( <CheckBoxListItem
               onChange={props.toggleAttendance}
               checked={record.attending} 
@@ -43,7 +43,7 @@ let GigDetail = (props) => {
                 <Grid columns={2} divided style={{height: '100vh'}}>
                     <Grid.Column >
                         <CheckBoxList
-                            title={"Attendance: "}
+                            title={"Attendance"}
                             onSave={props.saveAttendance}
                             listItems={singerListItems}/>
                     </Grid.Column>

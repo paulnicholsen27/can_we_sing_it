@@ -28,7 +28,7 @@ let GigPage = () => {
 
   let toggleAttendance = (event) => {
     let attendee = event.target.textContent
-    let attendanceRecord = selectedGig.attendance.find(
+    let attendanceRecord = selectedGig.singers.find(
       record => record.singer.name === attendee)
     attendanceRecord.attending = !attendanceRecord.attending
     let gigCopy = {...selectedGig}
@@ -36,7 +36,7 @@ let GigPage = () => {
   }
 
   let saveAttendance = () => { 
-      let singerIds = selectedGig.attendance
+      let singerIds = selectedGig.singers
         .filter(record => record.attending)
         .map(record => record.singer.id)
       let data = {singer_ids: singerIds}
@@ -72,7 +72,7 @@ let GigPage = () => {
       <Grid.Column width={12} >
         <GigDetail 
           gig={selectedGig} 
-          key={selectedGig ? selectedGig.attendance : null}
+          key={selectedGig ? selectedGig.singers : null}
           editGig={editGig}
           saveAttendance={saveAttendance}
           toggleAttendance={toggleAttendance} />
