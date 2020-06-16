@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Objectives
 
 - See all singers
