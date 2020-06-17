@@ -26,20 +26,25 @@ let GigPage = () => {
     console.log(selectedGig)
   }
 
-  let toggleAttendance = (event) => {
-    let attendee = event.target.textContent
-    let attendanceRecord = selectedGig.singers.find(
-      record => record.singer.name === attendee)
-    attendanceRecord.attending = !attendanceRecord.attending
+  let toggleCheckBox = (event, checkboxType) => {
+    let toggledItem = event.target.textContent
+    let attribute = checkboxType === "song" ? "title" : "name"
+    let record = selectedGig[`${checkboxType}s`].find(
+      record => record[checkboxType][attribute] === toggledItem)
+    record.included = !record.included
     let gigCopy = {...selectedGig}
     changeSelectedGig(gigCopy)
   }
 
-  let saveAttendance = () => { 
+
+  let saveList = () => { 
+      let songIds = selectedGig.songs
+        .filter(record => record.included)
+        .map(record => record.song.id)
       let singerIds = selectedGig.singers
-        .filter(record => record.attending)
+        .filter(record => record.included)
         .map(record => record.singer.id)
-      let data = {singer_ids: singerIds}
+      let data = {song_ids: songIds, singer_ids: singerIds}
       fetch(`http://localhost:3001/gigs/${selectedGig.id}`, {
           method: 'PATCH',
           headers: {
@@ -58,6 +63,15 @@ let GigPage = () => {
       )
   }
 
+  let toggleSongItem = (event) => {
+    let songTitle = event.target.textContent
+    let songRecord = selectedGig.songs.find(
+      record => record.song.title === songTitle)
+    songRecord.included = !songRecord.included
+    let gigCopy = {...selectedGig}
+    changeSelectedGig(gigCopy)
+  }
+
   const gigListItems = gigs.map(gig => <ListItem content={gig.name} 
                                             key={gig.id} 
                                             onClick={chooseGig} />)
@@ -74,8 +88,8 @@ let GigPage = () => {
           gig={selectedGig} 
           key={selectedGig ? selectedGig.singers : null}
           editGig={editGig}
-          saveAttendance={saveAttendance}
-          toggleAttendance={toggleAttendance} />
+          toggleCheckBox={toggleCheckBox}
+          onSave={saveList} />
       </Grid.Column>
     </Grid>
   );

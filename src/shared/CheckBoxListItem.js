@@ -5,8 +5,8 @@ let CheckBoxListItem = (props) => {
 
     return (
 
-        <List.Item >
-            <Checkbox 
+        <List.Item>
+            <Checkbox
                 label={props.label} 
                 checked={props.checked}
                 onChange={props.onChange} />

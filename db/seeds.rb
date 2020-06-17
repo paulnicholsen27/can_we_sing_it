@@ -23,8 +23,8 @@ stop = Song.find_or_create_by(title: "Don't Stop Me Now", notes: "Upbeat")
 faith = Song.find_or_create_by(title: "Faith")
 under = Song.find_or_create_by(title: "Under Pressure")
 take = Song.find_or_create_by(title: "Take On Me")
-silent = Song.find_or_create_by(title: "Silent Night", holiday: true)
-carol = Song.find_or_create_by(title: "Carol of the Bells", holiday: true)
+silent = Song.find_or_create_by(title: "Silent Night", is_holiday: true)
+carol = Song.find_or_create_by(title: "Carol of the Bells", is_holiday: true)
 
 t1 = Part.find_or_create_by(song: take, name: "Tenor 1")
 t2 = Part.find_or_create_by(song: take, name: "Tenor 2")
@@ -68,5 +68,7 @@ take_b2.singers += [gibson, jonathan, jim, mike]
 jb = Gig.find_or_create_by(name: "Joe Biden's Christmas Party")
 sc = Gig.find_or_create_by(name: "Supreme Court")
 
-jb.singers += Singer.all 
+jb.singers = Singer.all 
 sc.singers = Singer.all[1..12]
+
+jb.songs = [carol, silent, take, under]

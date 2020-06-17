@@ -5,7 +5,6 @@ import CheckBoxListItem from "shared/CheckBoxListItem.js"
 import EditGigModal from "./EditGigModal.js"
 
 let GigDetail = (props) => {
-
     let getDate = () => {
         const options = { year: 'numeric', 
         month: 'long',
@@ -18,18 +17,18 @@ let GigDetail = (props) => {
     if (props.gig) {
         const singerListItems = props.gig.singers.map((record) => {
           return ( <CheckBoxListItem
-              onChange={props.toggleAttendance}
-              checked={record.attending} 
+              onChange={(event) => props.toggleCheckBox(event, "singer")}
+              checked={record.included} 
               key={record.singer.id}
               label={record.singer.name}/> )
       })
 
-        const songListItems = props.gig.songs.map((song) => {
+        const songListItems = props.gig.songs.map((record) => {
           return ( <CheckBoxListItem
-              onChange={props.toggleAttendance}
-              checked={true} 
-              key={song.id}
-              label={song.title}/> )
+              onChange={(event) => props.toggleCheckBox(event, "song")}
+              checked={record.included} 
+              key={record.song.id}
+              label={record.song.title}/> )
       })
 
         return (
@@ -44,13 +43,13 @@ let GigDetail = (props) => {
                     <Grid.Column >
                         <CheckBoxList
                             title={"Attendance"}
-                            onSave={props.saveAttendance}
+                            onSave={() => props.onSave("singer")}
                             listItems={singerListItems}/>
                     </Grid.Column>
                     <Grid.Column>
                         <CheckBoxList
                             title={"Set List"}
-                            onSave={props.saveAttendance}
+                            onSave={() => props.onSave("song")}
                             listItems={songListItems}/>
                     </Grid.Column>
                 </Grid>

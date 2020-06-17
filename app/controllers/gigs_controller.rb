@@ -47,7 +47,7 @@ class GigsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def gig_params
-      params.permit(:name, :notes, :start_time, :id, :gig, :singer_ids => [])
+      params.permit(:name, :notes, :start_time, :id, :gig, :song_ids => [], :singer_ids => [])
     end
 
 end
