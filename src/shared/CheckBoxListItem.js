@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Checkbox, List, Transition} from 'semantic-ui-react'
 
 let CheckBoxListItem = (props) => {

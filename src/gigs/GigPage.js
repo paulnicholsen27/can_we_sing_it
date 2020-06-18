@@ -63,15 +63,6 @@ let GigPage = () => {
       )
   }
 
-  let toggleSongItem = (event) => {
-    let songTitle = event.target.textContent
-    let songRecord = selectedGig.songs.find(
-      record => record.song.title === songTitle)
-    songRecord.included = !songRecord.included
-    let gigCopy = {...selectedGig}
-    changeSelectedGig(gigCopy)
-  }
-
   const gigListItems = gigs.map(gig => <ListItem content={gig.name} 
                                             key={gig.id} 
                                             onClick={chooseGig} />)

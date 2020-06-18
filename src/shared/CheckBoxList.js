@@ -1,10 +1,7 @@
-import React, {useState, useEffect} from 'react'
+import React from 'react'
 import { Button, List, Container, Header } from 'semantic-ui-react'
-import CheckBoxListItem from "./CheckBoxListItem.js"
 
 let CheckBoxList = (props) => {
-
-
 
     return (
             
