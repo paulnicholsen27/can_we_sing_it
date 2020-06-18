@@ -64,9 +64,9 @@ take_t2.singers += [cooper, peter, jeb, abel]
 take_vp.singers << pnic
 take_b1.singers += [pneg, michael]
 take_b2.singers += [gibson, jonathan, jim, mike]
-
-jb = Gig.find_or_create_by(name: "Joe Biden's Christmas Party")
-sc = Gig.find_or_create_by(name: "Supreme Court")
+Gig.destroy_all
+jb = Gig.find_or_create_by(name: "Joe Biden's Christmas Party", notes: "Upbeat", start_time: DateTime.new(2020,12,23,23,0,0))
+sc = Gig.find_or_create_by(name: "Supreme Court", notes: "Include Star Spangled Banner", start_time: DateTime.new(2021,2,3,14,30,0))
 
 jb.singers = Singer.all 
 sc.singers = Singer.all[1..12]
