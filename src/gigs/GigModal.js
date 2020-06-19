@@ -1,6 +1,6 @@
 import React from 'react'
 import {Modal, Header, Button, Icon} from 'semantic-ui-react'
-let editGigModal = (props) => {
+let gigModal = (props) => {
     return (
 
         <Modal trigger={<Button size='mini'>Edit Details</Button>} closeIcon>
@@ -20,4 +20,4 @@ let editGigModal = (props) => {
     )
 }
 
-export default editGigModal
+export default gigModal

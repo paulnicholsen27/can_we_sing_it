@@ -1,6 +1,6 @@
 import React from "react";
 import { Container, Menu } from 'semantic-ui-react'
-import { Route, NavLink, BrowserRouter, Link } from "react-router-dom";
+import { Route, BrowserRouter, Link } from "react-router-dom";
 import Singers from "./singers/Singers"
 import Songs from "./songs/Songs"
 import Gigs from "./gigs/GigPage"

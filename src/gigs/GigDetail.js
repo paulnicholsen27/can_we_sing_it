@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Container,  Header, Grid, Checkbox } from 'semantic-ui-react'
 import CheckBoxList from "shared/CheckBoxList.js"
 import CheckBoxListItem from "shared/CheckBoxListItem.js"
-import EditGigModal from "./EditGigModal.js"
+import GigModal from "./GigModal.js"
 
 let GigDetail = (props) => {
 
@@ -45,7 +45,7 @@ let GigDetail = (props) => {
             <Container>
                 <Header as='h3' dividing>
                     <div>{props.gig.name} - {getDate()}</div>
-                    <EditGigModal 
+                    <GigModal 
                         gig={props.gig}
                         editGig={props.editGig} />
                 </Header>
