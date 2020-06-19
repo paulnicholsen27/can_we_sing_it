@@ -58,7 +58,7 @@ let GigDetail = (props) => {
                     </Grid.Column>
                     <Grid.Column>
                         <Checkbox
-                          style={{"margin-bottom": "15px"}} 
+                          style={{marginBottom: "15px"}} 
                           label='Include Holiday Songs?' 
                           onClick={toggleHoliday}
                           checked={showHoliday} />
