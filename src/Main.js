@@ -6,13 +6,13 @@ import Songs from "./songs/Songs"
 import Gigs from "./gigs/GigPage"
 
 let Main = () => {
-  let colors = {
-    cyan: 'E0FBFC',
-    green: '06D6AO',
-    blue: '118AB2',
-    black: '073B4C',
-    ruby: 'D81E5B'
-  }
+  // let colors = {
+  //   cyan: 'E0FBFC',
+  //   green: '06D6AO',
+  //   blue: '118AB2',
+  //   black: '073B4C',
+  //   ruby: 'D81E5B'
+  // }
 
     return (
           <BrowserRouter>

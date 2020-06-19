@@ -1,14 +1,22 @@
 import React from 'react'
-import {Modal, Header, Button, Icon} from 'semantic-ui-react'
+import {Modal, Header, Button, Icon, Form} from 'semantic-ui-react'
 let gigModal = (props) => {
+
+    let submitForm = (e) => {console.log(e)}
+
     return (
 
-        <Modal trigger={<Button size='mini'>Edit Details</Button>} closeIcon>
+        <Modal
+          trigger={<Button size='mini'>Edit Details</Button>} 
+          as={Form}
+          onSubmit={e => submitForm(e)}
+          closeIcon>
           <Header icon='edit' content='Edit this performance' />
           <Modal.Content>
-            <div>
-              {props.gig.name}
-            </div>
+              <Form.Input label="Name" required type="text" value={props.gig.name} />
+              <Form.Input label="Date" type="text" value={props.gig.name} />
+              <Form.Input label="Time" type="text" value={props.gig.name} />
+              <Form.Input label="Notes" type="text" value={props.gig.notes} />
           </Modal.Content>
           <Modal.Actions>
             <Button color='green' onClick={() => props.editGig(props.gig)}>
