@@ -31,7 +31,7 @@ let GigDetail = (props) => {
 
         const songListItems = props.gig.songs.map((record) => {
           return ( <CheckBoxListItem
-              visible={!record.song.is_holiday || showHoliday}
+              visible={!record.song.is_holiday || showHoliday || record.included}
               onChange={(event) => props.toggleCheckBox(event, "song")}
               checked={record.included} 
               key={record.song.id}
