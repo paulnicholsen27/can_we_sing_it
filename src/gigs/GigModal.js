@@ -10,6 +10,7 @@ let GigModal = (props) => {
     let [startTime, changeStartTime] = useState(initialStartTime)
     let [name, changeName] = useState(props.gig.name)
     let [notes, changeNotes] = useState(props.gig.notes)
+    let [modalOpen, setModalOpen] = useState(false)
     let handleChange = (event, { name, value }) => {
       switch(name) {
       case "date":
@@ -26,14 +27,21 @@ let GigModal = (props) => {
       }
     }
 
-    let submitForm = (e) => {console.log(e)}
+    let handleOpen = () => {setModalOpen(true)}
+    let handleClose = () => {setModalOpen(false)}
 
+    let closeAndSubmit = (e) => {
+      handleClose()
+      props.editGig(e)
+
+    }
     return (
 
         <Modal
-          trigger={<Button size='mini'>Edit Details</Button>} 
+          trigger={<Button onClick={handleOpen} size='mini'>Edit Details</Button>} 
           as={Form}
-          onSubmit={e => submitForm(e)}
+          open={modalOpen}
+          onSubmit={closeAndSubmit}
           closeIcon>
           <Header icon='edit' content='Edit this performance' />
           <Modal.Content>
@@ -62,7 +70,7 @@ let GigModal = (props) => {
               />
           </Modal.Content>
           <Modal.Actions>
-            <Button color='green' onClick={() => props.editGig(props.gig)}>
+            <Button color='green' type="submit">
               <Icon name='checkmark' />Submit changes
             </Button>
           </Modal.Actions>

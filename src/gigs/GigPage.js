@@ -22,8 +22,11 @@ let GigPage = () => {
     changeSelectedGig(gig)
   }
 
-  let editGig = () => {
-    console.log(selectedGig)
+  let editGig = (event) => {
+    let data = {start_time: new Date(event.target.elements["date"].value),
+                name: event.target.elements["name"].value,
+                notes: event.target.elements["notes"].value}
+    updateGig(data)
   }
 
   let toggleCheckBox = (event, checkboxType) => {
@@ -44,7 +47,10 @@ let GigPage = () => {
       let singerIds = selectedGig.singers
         .filter(record => record.included)
         .map(record => record.singer.id)
-      let data = {song_ids: songIds, singer_ids: singerIds}
+      updateGig({song_ids: songIds, singer_ids: singerIds})
+  }
+
+  let updateGig = (data) => {
       fetch(`http://localhost:3001/gigs/${selectedGig.id}`, {
           method: 'PATCH',
           headers: {
