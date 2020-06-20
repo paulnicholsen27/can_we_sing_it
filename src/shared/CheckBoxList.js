@@ -8,7 +8,7 @@ let CheckBoxList = (props) => {
         <Container>   
             <Header as="h4">{props.title}</Header>
             <List>
-                    {props.listItems}
+                {props.listItems}
             </List>
             <Button onClick={props.onSave}>Save Changes</Button>
         </Container>

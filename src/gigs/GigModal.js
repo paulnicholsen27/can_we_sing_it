@@ -46,6 +46,10 @@ let GigModal = (props) => {
           <Header icon='edit' content={props.triggerText} />
           <Modal.Content>
               <Form.Input 
+                  name="id" 
+                  value={props.gig.id} 
+                  type="hidden"/>
+              <Form.Input 
                 label="Name"
                 name="name" 
                 required type="text" 

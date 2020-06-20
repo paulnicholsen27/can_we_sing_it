@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import ListItem from "shared/ListItem.js"
 import GigDetail from "./GigDetail.js"
 import { List, Grid } from 'semantic-ui-react'
+import GigModal from "./GigModal.js"
 
 let GigPage = () => {
   let [gigs, changeGigs] = useState([])
@@ -25,8 +26,9 @@ let GigPage = () => {
   let editGig = (event) => {
     let data = {start_time: new Date(event.target.elements["date"].value),
                 name: event.target.elements["name"].value,
-                notes: event.target.elements["notes"].value}
-    updateGig(data)
+                notes: event.target.elements["notes"].value,
+                id: event.target.elements["id"].value}
+    processGigForm(data)
   }
 
   let toggleCheckBox = (event, checkboxType) => {
@@ -47,12 +49,22 @@ let GigPage = () => {
       let singerIds = selectedGig.singers
         .filter(record => record.included)
         .map(record => record.singer.id)
-      updateGig({song_ids: songIds, singer_ids: singerIds})
+      processGigForm({song_ids: songIds, singer_ids: singerIds, id: selectedGig.id})
   }
 
-  let updateGig = (data) => {
-      fetch(`http://localhost:3001/gigs/${selectedGig.id}`, {
-          method: 'PATCH',
+  let processGigForm = (data) => {
+      const baseUrl = "http://localhost:3001/gigs"
+      let url = ""
+      let method = ""
+      if (data.id) {
+        url = baseUrl + `/${data.id}`
+        method = "PATCH"
+      } else {
+        url = baseUrl
+        method = "POST"
+      }
+      fetch(url, {
+          method: method,
           headers: {
             'Content-Type': 'application/json',
           },
@@ -62,7 +74,11 @@ let GigPage = () => {
           gig => {
               let gigToUpdateIndex = gigs.findIndex(oldGig => oldGig.id === gig.id)
               let newGigs = [...gigs]
-              newGigs[gigToUpdateIndex] = gig
+              if (gigToUpdateIndex === -1) {
+                newGigs.push(gig)
+              } else {
+                newGigs[gigToUpdateIndex] = gig
+              }
               changeGigs(newGigs)
               changeSelectedGig(gig)
           }
@@ -79,7 +95,12 @@ let GigPage = () => {
             <List>
               {gigListItems}
             </List>
-        </Grid.Column>
+            <GigModal 
+              handleSubmit={editGig}
+              gig={{}}
+              triggerText={"Add a Gig"}
+              submitText={"Create Gig"} />
+            </Grid.Column>
       <Grid.Column width={12} >
         <GigDetail 
           gig={selectedGig} 
