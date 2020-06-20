@@ -32,18 +32,18 @@ let GigModal = (props) => {
 
     let closeAndSubmit = (e) => {
       handleClose()
-      props.editGig(e)
+      props.handleSubmit(e)
 
     }
     return (
 
         <Modal
-          trigger={<Button onClick={handleOpen} size='mini'>Edit Details</Button>} 
+          trigger={<Button onClick={handleOpen} size='mini'>{props.triggerText}</Button>} 
           as={Form}
           open={modalOpen}
           onSubmit={closeAndSubmit}
           closeIcon>
-          <Header icon='edit' content='Edit this performance' />
+          <Header icon='edit' content={props.triggerText} />
           <Modal.Content>
               <Form.Input 
                 label="Name"
@@ -71,7 +71,7 @@ let GigModal = (props) => {
           </Modal.Content>
           <Modal.Actions>
             <Button color='green' type="submit">
-              <Icon name='checkmark' />Submit changes
+              <Icon name='checkmark' />{props.submitText}
             </Button>
           </Modal.Actions>
         </Modal>

@@ -47,7 +47,9 @@ let GigDetail = (props) => {
                     <div>{props.gig.name} - {getDate()}</div>
                     <GigModal 
                         gig={props.gig}
-                        editGig={props.editGig} />
+                        handleSubmit={props.editGig}
+                        triggerText={"Edit Details"}
+                        submitText={"Submit Changes"} />
                 </Header>
                 <Grid columns={2} divided style={{height: '100vh'}}>
                     <Grid.Column >

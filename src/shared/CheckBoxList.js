@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, List, Container, Header, Transition } from 'semantic-ui-react'
+import { Button, List, Container, Header } from 'semantic-ui-react'
 
 let CheckBoxList = (props) => {
 
