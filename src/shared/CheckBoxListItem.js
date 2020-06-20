@@ -6,8 +6,10 @@ let CheckBoxListItem = (props) => {
     return (
         <Transition 
           visible={props.visible} 
-          animation='vertical flip' duration={500}>
-        <List.Item>
+          style={{display: "none"}}
+          animation='vertical flip' duration={300}>
+        <List.Item
+            style={{display: props.visible ? "list-item" : "none"}}>
             <Checkbox
                 label={props.label} 
                 checked={props.checked}

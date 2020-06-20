@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, List, Container, Header } from 'semantic-ui-react'
+import { Button, List, Container, Header, Transition } from 'semantic-ui-react'
 
 let CheckBoxList = (props) => {
 
@@ -7,7 +7,9 @@ let CheckBoxList = (props) => {
             
         <Container>   
             <Header as="h4">{props.title}</Header>
-            <List>{props.listItems}</List>
+            <List>
+                    {props.listItems}
+            </List>
             <Button onClick={props.onSave}>Save Changes</Button>
         </Container>
     )
