@@ -42,6 +42,7 @@ let GigModal = (props) => {
           as={Form}
           open={modalOpen}
           onSubmit={closeAndSubmit}
+          onClose={handleClose}
           closeIcon>
           <Header icon='edit' content={props.triggerText} />
           <Modal.Content>
