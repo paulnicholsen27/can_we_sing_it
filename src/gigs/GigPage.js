@@ -8,7 +8,7 @@ let GigPage = () => {
   let [gigs, changeGigs] = useState([])
   let [selectedGig, changeSelectedGig] = useState(null)
   let [newGig, changeNewGig] = useState({
-    start_time: new Date(),
+    start_time: new Date().toDateString(),
     notes: null,
     name: null,
     id: null
@@ -30,7 +30,6 @@ let GigPage = () => {
 
   let editGig = (event) => {
     let gig = newGig
-    debugger
     // let data = {start_time: new Date(gig.startTime.value),
     //             name: gig.name.value,
     //             notes: gig.notes.value,
@@ -38,9 +37,7 @@ let GigPage = () => {
     processGigForm(gig)
   }
 
-  let handleChange = (event) => {
-    console.log(event.target.name, event.target.value)
-    event.persist()
+  let handleChange = (event, {name, value}) => {
     // switch(name) {
     // case "date":
     //   changeStartTime(event.target.value)
@@ -55,7 +52,7 @@ let GigPage = () => {
     //   console.log(name, event.target.value)
     // }
     changeNewGig((prevGig) => {
-      return {...prevGig, [event.target.name]: event.target.value}
+      return {...prevGig, [name]: value}
     }
   )}
 

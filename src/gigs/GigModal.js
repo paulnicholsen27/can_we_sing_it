@@ -56,13 +56,14 @@ let GigModal = (props) => {
                 value={props.gig.name} 
                 onChange={props.handleChange}/>
               <DateInput
+                label="Date"
                 localization="en_US"
                 dateFormat="LL"
                 name="start_time"
                 placeholder="Date"
                 value={props.gig.start_time}
-                iconPosition="left"
                 onChange={props.handleChange}
+                iconPosition="left"
                 closable={true}
               />
               <Form.TextArea
