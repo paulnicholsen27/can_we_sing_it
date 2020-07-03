@@ -7,7 +7,12 @@ import GigModal from "./GigModal.js"
 let GigPage = () => {
   let [gigs, changeGigs] = useState([])
   let [selectedGig, changeSelectedGig] = useState(null)
-  
+  let [newGig, changeNewGig] = useState({
+    start_time: new Date(),
+    notes: null,
+    name: null,
+    id: null
+  })
   
   useEffect(() => {
     let mounted = true
@@ -19,17 +24,40 @@ let GigPage = () => {
 
   let chooseGig = (event) => {
     let name = event.target.textContent
-    let gig = gigs.find( (gig) => gig.name === name)
+    let gig = gigs.find( (gig) => gig.name === name) // TODO are names unique?  prob not
     changeSelectedGig(gig)
   }
 
   let editGig = (event) => {
-    let data = {start_time: new Date(event.target.elements["date"].value),
-                name: event.target.elements["name"].value,
-                notes: event.target.elements["notes"].value,
-                id: event.target.elements["id"].value}
-    processGigForm(data)
+    let gig = newGig
+    debugger
+    // let data = {start_time: new Date(gig.startTime.value),
+    //             name: gig.name.value,
+    //             notes: gig.notes.value,
+    //             id: gig.id.value}
+    processGigForm(gig)
   }
+
+  let handleChange = (event) => {
+    console.log(event.target.name, event.target.value)
+    event.persist()
+    // switch(name) {
+    // case "date":
+    //   changeStartTime(event.target.value)
+    //   break;
+    // case "name":
+    //   changeName(event.target.value)
+    //   break;
+    // case "notes":
+    //   changeNotes(event.target.value)
+    //   break;
+    // default:
+    //   console.log(name, event.target.value)
+    // }
+    changeNewGig((prevGig) => {
+      return {...prevGig, [event.target.name]: event.target.value}
+    }
+  )}
 
   let toggleCheckBox = (event, checkboxType) => {
     let toggledItem = event.target.textContent
@@ -81,6 +109,7 @@ let GigPage = () => {
               }
               changeGigs(newGigs)
               changeSelectedGig(gig)
+              changeNewGig({})
           }
       )
   }
@@ -97,7 +126,8 @@ let GigPage = () => {
             </List>
             <GigModal 
               handleSubmit={editGig}
-              gig={{}}
+              handleChange={handleChange}
+              gig={newGig}
               triggerText={"Add a Gig"}
               submitText={"Create Gig"} />
             </Grid.Column>

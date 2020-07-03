@@ -3,29 +3,28 @@ import {Modal, Header, Button, Icon, Form} from 'semantic-ui-react'
 import {
   DateInput,
 } from 'semantic-ui-calendar-react';
-import moment from 'moment';
 
 let GigModal = (props) => {
-    const initialStartTime = moment(props.gig.start_time).toDate()
-    let [startTime, changeStartTime] = useState(initialStartTime)
-    let [name, changeName] = useState(props.gig.name)
-    let [notes, changeNotes] = useState(props.gig.notes)
+    // const initialStartTime = moment(props.gig.start_time).toDate()
+    // let [startTime, changeStartTime] = useState(initialStartTime)
+    // let [name, changeName] = useState(props.gig.name)
+    // let [notes, changeNotes] = useState(props.gig.notes)
     let [modalOpen, setModalOpen] = useState(false)
-    let handleChange = (event, { name, value }) => {
-      switch(name) {
-      case "date":
-        changeStartTime(value)
-        break;
-      case "name":
-        changeName(value)
-        break;
-      case "notes":
-        changeNotes(value)
-        break;
-      default:
-        console.log(name, value)
-      }
-    }
+    // let handleChange = (event, { name, value }) => {
+    //   switch(name) {
+    //   case "date":
+    //     changeStartTime(value)
+    //     break;
+    //   case "name":
+    //     changeName(value)
+    //     break;
+    //   case "notes":
+    //     changeNotes(value)
+    //     break;
+    //   default:
+    //     console.log(name, value)
+    //   }
+    // }
 
     let handleOpen = () => {setModalOpen(true)}
     let handleClose = () => {setModalOpen(false)}
@@ -54,24 +53,24 @@ let GigModal = (props) => {
                 label="Name"
                 name="name" 
                 required type="text" 
-                value={name} 
-                onChange={handleChange}/>
+                value={props.gig.name} 
+                onChange={props.handleChange}/>
               <DateInput
                 localization="en_US"
                 dateFormat="LL"
-                name="date"
+                name="start_time"
                 placeholder="Date"
-                value={startTime}
+                value={props.gig.start_time}
                 iconPosition="left"
-                onChange={handleChange}
+                onChange={props.handleChange}
                 closable={true}
               />
               <Form.TextArea
                 label="Notes"
                 type="text"
                 name="notes"
-                value={notes}
-                onChange={handleChange}
+                value={props.gig.notes}
+                onChange={props.handleChange}
               />
           </Modal.Content>
           <Modal.Actions>
