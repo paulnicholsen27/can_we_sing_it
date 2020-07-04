@@ -10,15 +10,6 @@ let GigDetail = (props) => {
     let [showHoliday, changeShowHoliday] = useState(
       new Date().getMonth() >= 9) 
 
-    let getDate = () => {
-        const options = { year: 'numeric', 
-        month: 'long',
-        day: 'numeric' };
-
-        let _ = new Date(props.gig.start_time)
-        return _.toLocaleDateString(undefined, options)
-    }
-
     if (props.gig) {
 
         const singerListItems = props.gig.singers.map((record) => {
@@ -38,16 +29,16 @@ let GigDetail = (props) => {
               label={record.song.title}/> )
       })
 
-
         let toggleHoliday = () => {changeShowHoliday(current => !current)}
 
         return (
             <Container>
                 <Header as='h3' dividing>
-                    <div>{props.gig.name} - {getDate()}</div>
+                    <div>{props.gig.name} - {new Date(props.gig.start_time).toDateString()}</div>
                     <GigModal 
-                        gig={props.gig}
+                        gig={props.gigCopy}
                         handleSubmit={props.editGig}
+                        handleChange={props.handleChangeEditModal}
                         triggerText={"Edit Details"}
                         submitText={"Submit Changes"} />
                 </Header>

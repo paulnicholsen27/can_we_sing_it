@@ -13,7 +13,11 @@ let GigPage = () => {
     name: null,
     id: null
   })
-  
+
+  let [gigCopy, changeGigCopy] = useState({
+    ...selectedGig
+  })
+
   useEffect(() => {
     let mounted = true
     fetch("http://localhost:3001/gigs")
@@ -26,32 +30,17 @@ let GigPage = () => {
     let name = event.target.textContent
     let gig = gigs.find( (gig) => gig.name === name) // TODO are names unique?  prob not
     changeSelectedGig(gig)
-  }
-
-  let editGig = (event) => {
-    let gig = newGig
-    // let data = {start_time: new Date(gig.startTime.value),
-    //             name: gig.name.value,
-    //             notes: gig.notes.value,
-    //             id: gig.id.value}
-    processGigForm(gig)
+    changeGigCopy(gig)
   }
 
   let handleChange = (event, {name, value}) => {
-    // switch(name) {
-    // case "date":
-    //   changeStartTime(event.target.value)
-    //   break;
-    // case "name":
-    //   changeName(event.target.value)
-    //   break;
-    // case "notes":
-    //   changeNotes(event.target.value)
-    //   break;
-    // default:
-    //   console.log(name, event.target.value)
-    // }
     changeNewGig((prevGig) => {
+      return {...prevGig, [name]: value}
+    }
+  )}
+
+  let handleChangeEditModal = (event, {name, value}) => {
+    changeGigCopy((prevGig) => {
       return {...prevGig, [name]: value}
     }
   )}
@@ -77,16 +66,19 @@ let GigPage = () => {
       processGigForm({song_ids: songIds, singer_ids: singerIds, id: selectedGig.id})
   }
 
-  let processGigForm = (data) => {
+  let processGigForm = (event) => {
+      let data
       const baseUrl = "http://localhost:3001/gigs"
       let url = ""
       let method = ""
-      if (data.id) {
-        url = baseUrl + `/${data.id}`
-        method = "PATCH"
+      if (event.target.elements.id.value) {
+          data = gigCopy
+          url = baseUrl + `/${data.id}`
+          method = "PATCH"
       } else {
-        url = baseUrl
-        method = "POST"
+          data = newGig
+          url = baseUrl
+          method = "POST"
       }
       fetch(url, {
           method: method,
@@ -107,6 +99,7 @@ let GigPage = () => {
               changeGigs(newGigs)
               changeSelectedGig(gig)
               changeNewGig({})
+              changeGigCopy({})
           }
       )
   }
@@ -122,7 +115,7 @@ let GigPage = () => {
               {gigListItems}
             </List>
             <GigModal 
-              handleSubmit={editGig}
+              handleSubmit={processGigForm}
               handleChange={handleChange}
               gig={newGig}
               triggerText={"Add a Gig"}
@@ -132,7 +125,9 @@ let GigPage = () => {
         <GigDetail 
           gig={selectedGig} 
           key={selectedGig ? selectedGig.singers : null}
-          editGig={editGig}
+          editGig={processGigForm}
+          gigCopy={gigCopy}
+          handleChangeEditModal={handleChangeEditModal}
           toggleCheckBox={toggleCheckBox}
           onSave={saveList} />
       </Grid.Column>

@@ -5,26 +5,8 @@ import {
 } from 'semantic-ui-calendar-react';
 
 let GigModal = (props) => {
-    // const initialStartTime = moment(props.gig.start_time).toDate()
-    // let [startTime, changeStartTime] = useState(initialStartTime)
-    // let [name, changeName] = useState(props.gig.name)
-    // let [notes, changeNotes] = useState(props.gig.notes)
-    let [modalOpen, setModalOpen] = useState(false)
-    // let handleChange = (event, { name, value }) => {
-    //   switch(name) {
-    //   case "date":
-    //     changeStartTime(value)
-    //     break;
-    //   case "name":
-    //     changeName(value)
-    //     break;
-    //   case "notes":
-    //     changeNotes(value)
-    //     break;
-    //   default:
-    //     console.log(name, value)
-    //   }
-    // }
+
+  let [modalOpen, setModalOpen] = useState(false)
 
     let handleOpen = () => {setModalOpen(true)}
     let handleClose = () => {setModalOpen(false)}
@@ -61,7 +43,7 @@ let GigModal = (props) => {
                 dateFormat="LL"
                 name="start_time"
                 placeholder="Date"
-                value={props.gig.start_time}
+                value={props.gig.start_time} // TODO remove time from date
                 onChange={props.handleChange}
                 iconPosition="left"
                 closable={true}
