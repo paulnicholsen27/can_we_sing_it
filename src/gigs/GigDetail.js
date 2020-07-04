@@ -33,15 +33,17 @@ let GigDetail = (props) => {
 
         return (
             <Container>
-                <Header as='h3' dividing>
-                    <div>{props.gig.name} - {new Date(props.gig.start_time).toDateString()}</div>
-                    <GigModal 
+                <Container dividing as="div">
+                    <h3 style={{marginBottom: "2px"}}>{props.gig.name} - {new Date(props.gig.start_time).toDateString()}</h3>
+                    <div style={{fontSize: "12px"}}>{props.gig.notes}</div>
+                    <GigModal attached
                         gig={props.gigCopy}
                         handleSubmit={props.editGig}
                         handleChange={props.handleChangeEditModal}
                         triggerText={"Edit Details"}
                         submitText={"Submit Changes"} />
-                </Header>
+                </Container>
+                <div class="ui divider"></div>
                 <Grid columns={2} divided style={{height: '100vh'}}>
                     <Grid.Column >
                         <CheckBoxList
