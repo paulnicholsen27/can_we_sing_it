@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Container,  Header, Grid, Checkbox } from 'semantic-ui-react'
+import { Container,  Header, Grid, Checkbox, Button } from 'semantic-ui-react'
 import CheckBoxList from "shared/CheckBoxList.js"
 import CheckBoxListItem from "shared/CheckBoxListItem.js"
 import GigModal from "./GigModal.js"
@@ -36,13 +36,17 @@ let GigDetail = (props) => {
                 <Container dividing as="div">
                     <h3 style={{marginBottom: "2px"}}>{props.gig.name} - {new Date(props.gig.start_time).toDateString()}</h3>
                     {props.gig.notes ? <div style={{fontSize: "12px"}}>Notes: {props.gig.notes}</div> : ""}
-                    <GigModal attached
-                        gig={props.gigCopy}
-                        handleSubmit={props.editGig}
-                        handleChange={props.handleChangeEditModal}
-                        triggerText={"Edit Details"}
-                        submitText={"Submit Changes"} />
                 </Container>
+                <GigModal
+                    gig={props.gigCopy}
+                    handleSubmit={props.editGig}
+                    handleChange={props.handleChangeEditModal}
+                    triggerText={"Edit Details"}
+                    submitText={"Submit Changes"} />
+                <Button 
+                    content="Delete"
+                    onClick={props.deleteGig}
+                />
                 <div class="ui divider"></div>
                 <Grid columns={2} divided style={{height: '100vh'}}>
                     <Grid.Column >

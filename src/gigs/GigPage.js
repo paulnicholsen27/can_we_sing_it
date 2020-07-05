@@ -32,6 +32,12 @@ let GigPage = () => {
     changeGigCopy(gig)
   }
 
+  let removeGig = (id) => {
+    const updatedGigs = gigs.filter( (gig) => gig.id !== id)
+    changeGigs(updatedGigs)
+    changeSelectedGig(null)
+  }
+
   let handleChange = (event, {name, value}) => {
     changeNewGig((prevGig) => {
       return {...prevGig, [name]: value}
@@ -113,7 +119,7 @@ let GigPage = () => {
         }).then(r => r.json())
         .then(json => {
           if (json.success) {
-
+            removeGig(id)
           }
 
           
@@ -149,7 +155,8 @@ let GigPage = () => {
           gigCopy={gigCopy}
           handleChangeEditModal={handleChangeEditModal}
           toggleCheckBox={toggleCheckBox}
-          onSave={saveList} />
+          onSave={saveList}
+          deleteGig={deleteGig} />
       </Grid.Column>
     </Grid>
   );

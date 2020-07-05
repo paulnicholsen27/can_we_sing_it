@@ -37,6 +37,7 @@ class GigsController < ApplicationController
   # DELETE /gigs/1
   def destroy
     @gig.destroy
+    render json: {success: true}
   end
 
   private
