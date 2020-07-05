@@ -26,9 +26,8 @@ let GigPage = () => {
     return () => mounted = false
   }, []);
 
-  let chooseGig = (event) => {
-    let name = event.target.textContent
-    let gig = gigs.find( (gig) => gig.name === name) // TODO are names unique?  prob not
+  let chooseGig = (id) => {
+    let gig = gigs.find( (gig) => gig.id === id)
     changeSelectedGig(gig)
     changeGigCopy(gig)
   }
@@ -54,7 +53,6 @@ let GigPage = () => {
     let gigCopy = {...selectedGig}
     changeSelectedGig(gigCopy)
   }
-
 
   let saveList = () => { 
       let songIds = selectedGig.songs
@@ -104,9 +102,31 @@ let GigPage = () => {
       )
   }
 
+  let deleteGig = () => {
+    if (window.confirm("Are you sure you wish to delete this item?")){
+        let id = selectedGig.id
+        fetch(`http://localhost:3001/gigs/${id}`, {
+          method: "DELETE",
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        }).then(r => r.json())
+        .then(json => {
+          if (json.success) {
+
+          }
+
+          
+          
+      })
+
+
+    }
+  }
+
   const gigListItems = gigs.map(gig => <ListItem content={gig.name} 
                                             key={gig.id} 
-                                            onClick={chooseGig} />)
+                                            onClick={() => chooseGig(gig.id)} />)
 
   return (
     <Grid columns={2} divided style={{height: '100vh'}}>
