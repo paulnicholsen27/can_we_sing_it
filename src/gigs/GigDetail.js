@@ -35,7 +35,7 @@ let GigDetail = (props) => {
             <Container>
                 <Container dividing as="div">
                     <h3 style={{marginBottom: "2px"}}>{props.gig.name} - {new Date(props.gig.start_time).toDateString()}</h3>
-                    <div style={{fontSize: "12px"}}>{props.gig.notes}</div>
+                    {props.gig.notes ? <div style={{fontSize: "12px"}}>Notes: {props.gig.notes}</div> : ""}
                     <GigModal attached
                         gig={props.gigCopy}
                         handleSubmit={props.editGig}
