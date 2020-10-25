@@ -5,7 +5,7 @@ import { List, Checkbox, Container } from 'semantic-ui-react'
 let Songs = () => {
   let [songs, changeSongs] = useState([])
 
-  //  default to true if it's Christmastime!!!
+  //  default to true if it's Christmastime!
   let [showHoliday, changeShowHoliday] = useState(
     new Date().getMonth() >= 9) 
 
@@ -18,7 +18,7 @@ let Songs = () => {
   }, []);
 
   const getSongListItems = songs.map(song => {
-    return <ListItem 
+    return <ListItem // TODO:  Sort by number of times performed in past year
               content={song.title} 
               key={song.id}
               visible={!song.is_holiday || showHoliday}
